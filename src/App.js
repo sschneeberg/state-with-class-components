@@ -1,25 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { Component } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { count: 0 };
+        //to keep state context:
+        //this.increment = this.increment.bind(this)
+        //or use arrow function for increment or inside onClick
+    }
+
+    increment = () => {
+        const currCount = this.state.count;
+        const newCount = currCount + 1;
+        this.setState({ count: newCount });
+    };
+
+    decrement() {
+        const currCount = this.state.count;
+        const newCount = currCount - 1;
+        this.setState({ count: newCount });
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <h1>{this.state.count}</h1>
+                <button onClick={this.increment}>+</button>
+                <button
+                    onClick={() => {
+                        this.decrement();
+                    }}>
+                    -
+                </button>
+            </div>
+        );
+    }
 }
 
 export default App;
