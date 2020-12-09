@@ -13,19 +13,21 @@ class App extends Component {
     increment = () => {
         //const addAmount = prompt('How much do you want to add?');
         const currCount = this.state.count;
-        const newCount = parseInt(currCount) + parseInt(this.state.inputNum);
+        const newCount = currCount + this.state.inputNum;
         this.setState({ count: newCount });
     };
 
     decrement() {
         //const subAmount = prompt('How much do you want to add?');
         const currCount = this.state.count;
-        const newCount = parseInt(currCount) - parseInt(this.state.inputNum);
+        const newCount = currCount - this.state.inputNum;
         this.setState({ count: newCount });
     }
 
     changeInput = (evt) => {
-        this.setState({ inputNum: evt.target.value });
+        let num = parseInt(evt.target.value) || 0;
+        //no NaN, but also can't backspace
+        this.setState({ inputNum: num });
     };
 
     render() {
